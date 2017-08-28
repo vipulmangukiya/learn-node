@@ -1,0 +1,31 @@
+------Node Package Managar-----------
+
+
+lodash this packeage use for all string related operation and much more
+
+install: project directory 
+
+-> npm install lodash --save
+
+
+nodemon this package use for automatically restart node application make change on code file
+
+install : Globallay 
+
+-> npm install nodemon -g
+
+
+for applying automatically restart app apply following command on root file of the project
+
+-> nodemon apps.js 
+
+(in out case app.js is root file)
+
+
+for accepting commad line arguments use follwing command
+-> node app.js <list of argments separeate by space>
+-> node app.js add
+
+for accpeting command line arguments with 3rd party module 
+->npm install yargs@4.7.1   // installing yargs module
+
