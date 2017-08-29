@@ -15,14 +15,21 @@ console.log("Yargs: ",argv);
 
 
 if(command === 'add') {
+	
 	note.addNote(argv.title, argv.body);
 
 } else if(command === 'list') {
-	console.log("Listing Data");
+	
+	note.getAll();
+
 } else if(command === 'read') {
-	console.log("Reading Note");
+	
+	note.getNote(argv.title);
+
 } else if (command === 'remove') { 
-	console.log('Remove Note')
+
+	note.removeNote(argv.title);
+
 } else {
 	console.log("Command not recognized");
 }
