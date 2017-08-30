@@ -1,14 +1,42 @@
-console.log("Starting notes JS");
 
-module.exports.name ="Vipul Mangukiya";
+const fs = require('fs');
 
-module.exports.add = (a,b) => {
+//module.exports.name ="Vipul Mangukiya";
 
-	return a + b; 
-}
+// module.exports.add = (a,b) => {
+
+// 	return a + b; 
+// }
+
+var fetchNote = () => {
+	try{
+
+		var noteString = fs.readFileSync('node-data.json'); // if file not exists it will file error with out try case
+		return JSON.parse(noteString);
+
+	}catch(e){
+		return [];
+	}
+};
+
+var saveNote = (notes) => {
+	fs.writeFileSync('node-data.json', JSON.stringify(notes));	///save file
+};
 
 var addNote = (title,body) => {
-	console.log('Adding note :',title, body);
+	var notes = fetchNote();
+	var note = {
+		title,
+		body
+	};
+	
+	var dupalicateNotes = notes.filter((note) => note.title === title); // check title already or not in JOSN filr
+	
+	if(dupalicateNotes.length === 0) {
+		notes.push(note);
+		saveNote(notes);
+		return note;	
+	}  
 };
 
 var getAll = () => {
