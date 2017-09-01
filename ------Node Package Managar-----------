@@ -28,5 +28,39 @@
 =>for accpeting command line arguments with 3rd party module 
 -	>npm install yargs@4.7.1   // installing yargs module
 
+=> Debugging programs
+
+	-> npm inspect apps.js
+	-> list(10) // this command list the number or line given arguments
+	-> n // this option for next statement for dubugging
+	-> c // Continues reaming dubugging and also use when set the dubugger on program any line it direct     jump 		to debugger line
+	'dubugger' keyword use to program set the debugger in program 
+		for setting debugger just wirte keyword on your program which line to set
+
+	=> Debugging form Chrome Developer Tools
+	
+	-> node --inspect-brk apps.js  
+		After running above command type on chrome url : 
+			=> chrome://inspect/#devices
+
+=> command on yargs 
+	command options use to validate the command arguments and display help of the command 
+	it contain three aregument 
+	
+	.command(<command name> <discrib command functionality>,<arguments list and ther validation optoin>)
+
+	eg.
+		const argv 	= yargs
+				.command('add','Add a new note',{
+					title:{
+							describe: 'Title of note',  // first arg. discribe
+							demand: true,				// it is reuired or not
+							alias: 't'  				// alias to access passing argument 
+						}
+				})
+				.command('list','List all notes') // wihout argument only help
+				.help()  // for help display of command 
+				.argv;
+
 
 

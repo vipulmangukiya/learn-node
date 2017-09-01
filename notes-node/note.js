@@ -40,7 +40,7 @@ var addNote = (title,body) => {
 };
 
 var getAll = () => {
-	console.log("GetAll notes");
+	return fetchNote();
 }
 
 var getNote = (title) => {
@@ -59,6 +59,7 @@ var removeNote = (title) => {
 	return notes.length !== filterNotes.lenght;
 }
 var logNote = (note) => {
+	debugger;
 	console.log("---------------");
 	console.log(`Title : ${note.title}`);
 	console.log(`Body : ${note.body}`);	
