@@ -3,8 +3,9 @@ var getUser = (id,callback) => {
 		id:id,
 		name: "Vipul Mangukiya"
 	};
-
-	callback(user);
+	setTimeout(() => {
+		callback(user);
+	},2000);
 };
 
 

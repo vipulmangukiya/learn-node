@@ -64,5 +64,10 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 				.help()  // for help display of command 
 				.argv;
 
+=> install request package 
+
+	->npm install request --save
+	
+
 
 
