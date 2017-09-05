@@ -22,10 +22,8 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
 		console.log(errorMessage);
 	} else {
 		console.log(JSON.stringify(results, undefined, 2));
-	}
-});
 
-weather.getWeather(21.7216385,71.957917,(errorMessage,weatherResult) =>{
+		weather.getWeather(results.Latitude,results.Longitude,(errorMessage,weatherResult) =>{
 	
 	if(errorMessage) {
 		
@@ -36,3 +34,6 @@ weather.getWeather(21.7216385,71.957917,(errorMessage,weatherResult) =>{
 		console.log(JSON.stringify(weatherResult, undefined,2));
 	}
 });
+	}
+});
+

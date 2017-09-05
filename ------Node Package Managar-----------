@@ -67,7 +67,39 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 => install request package 
 
 	->npm install request --save
-	
+
+=> Install axios package
+
+	->	Promise based HTTP client for the browser and node.js , A promise is an abstraction for 	      asynchronous programming
+
+		A promise is an abstraction for asynchronous programming.
+		e.g
+		------------------Code--------------------------------------------
+		var asyncAdd = (a, b) => {    ///  asynchronous which return promise
+			return new Promise((resolve, reject )=>{
+				setTimeout(() =>{
+					if(typeof a ==='number' && typeof b ==='number') {
+						resolve(a + b);
+					} else {
+						reject('Areguments must be numbers');
+					}
+				},1500);	
+			});
+		};
+
+		asyncAdd(5,8).then((message) => { // resolve
+			console.log('Sum Are :' ,message);
+		}, (errorMessage) => {  //reject 
+			console.log(errorMessage);
+		});
+		
+		----------------------end Code demo-----------------------------------------
+
+		in promise return two type of value first success(resolve) and error (reject)
+
+		in here return promise value insted or storing value in variable to bind the value in 'then' using two case resolve and success case.
+
+
 
 
 
