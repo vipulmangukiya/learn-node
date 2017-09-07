@@ -28,7 +28,7 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 	-> node app.js add
 
 =>for accpeting command line arguments with 3rd party module 
--	>npm install yargs@4.7.1   // installing yargs module
+-	>npm install yargs@4.7.1   // installing yargs module specific version
 
 => Debugging programs
 
@@ -99,7 +99,60 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 
 		in here return promise value insted or storing value in variable to bind the value in 'then' using two case resolve and success case.
 
+	=> installing axios for local 
+	
+		->npm insatll axios --save 
 
 
 
+
+-----------------------------------------------------------------------------
+ 				Web Servers and Application Deployment		
+-----------------------------------------------------------------------------
+
+=> install express package no nonce libary 
+
+	->npm install express --save
+
+	->npm install hbs --save  // it a template engine server
+
+	call the partials view(like header,footer) form the View using hbs package 
+
+	for registerPartials use the following Code
+
+		--> hbs.registerPartials(__dirname + '/views/partials');
+
+			In the Partials Directory Create header.hbs and footer.hbs file
+
+			Calling Partials View in Code using following way
+				
+				{{> header}}
+	                
+	                <body part>
+	                   
+				{{> footer}}
+
+	==>Run The Partials file using following Command 
+
+		-> node server.js -e js,hbs //  in option -e watch the extension file like js,hbs file
+
+	==>Creating Helper in hbs
+
+		For register the Helper following way
+			=> hbs.registerHelper('getCurrentYear', () =>{
+				return new Date().getFullYear();
+			});
+
+		In here 'getCurrentYear' Helper call directly in partials file and return current year
+
+	==> Creating Middelware using express
+		app.use((req, res, next)=>{
+
+		next();
+		});	
+
+		In Here next argument are sedn execute next flow
+		First Run about page it will run after executing use block
+
+		Use of Middel ware to Authorized user to before calling  API
 
