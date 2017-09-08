@@ -107,7 +107,7 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 
 
 -----------------------------------------------------------------------------
- 				Web Servers and Application Deployment		
+ 				5. Web Servers and Application Deployment		
 -----------------------------------------------------------------------------
 
 => install express package no nonce libary 
@@ -155,4 +155,90 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 		First Run about page it will run after executing use block
 
 		Use of Middel ware to Authorized user to before calling  API
+
+
+		------------------------------------------
+			5.1 Git Hub Version Control
+		------------------------------------------
+			(All Command Run on Git Bash )
+		=> Generate SSH Key using the following Command
+			
+			-> ssh-keygen -t rsa -b 4096 -C 'vbmm20@gmail.com'
+				// Enter All asking input after firing this command
+
+			=>List All SSH file
+			------------------
+			-> ls -al ~/.ssh
+
+			=>know the process id of rsa flie
+			-> eval "$(ssh-agent -s)"
+
+			=>Add Private SSH and Know The Path of file
+
+			->ssh-add ~/.ssh/id_rsa
+
+			=>after Setuping rsa key Goto the Github and login/singup 
+				
+				=>After Login Goto the Setting then after SSH and GPG keys 
+					Link: https://github.com/settings/keys
+				
+				=> Add New SSH Key
+					Add Title Apropriate Yor Machine name and Paste the generate SSH Key, Copy the SSH Key following Command
+					-> clip < ~/.ssh/id_rsa.pub 
+				
+				=> Add SSH Key
+
+				=>After Adding SSH Key Connet local to Github using Following Command
+					->ssh -T git@guthub.com
+
+				=>Create New Repository on Github Account and send the data in remote server(github) using following Command
+					// it will Display after creatig new Repository and initilize the Repository to the local machine 
+
+					->git remote add origin https://github.com/vipulmangukiya/learn-node.git 
+		
+					// push data to the github Repository on Master branch 
+					
+					-> 	git push -u origin master
+
+					=> Creating Application on Cloud Base  Free Application development using Heroku.com
+						1. Login  heroku account 
+						2. install heroku CLI (https://devcenter.heroku.com/articles/heroku-cli) based in Operating System 
+						3. After Install heroku CLI Follwoing command execute
+							-> heroku --help
+						4. Login into heroku account
+							->heroku login
+								Eneter email and Password
+						5. Setup SSH to  heroku account execute the following command on SSH Directory
+							->heroku keys:add		
+						6. View the Keys on your heroku  account
+							-> heroku keys
+							-> heroku keys: remove <email>  // if remove key form heroku a/c
+						7.Testing Connection between Github to Heroku
+							-> ssh -v git@heroku.com
+
+							now in set Daynmic port on server port file
+							const port  = process.env.PORT || 3000;
+
+							also make change on package.json file on scripts josn array after test add new 'star'
+								e.g : "start": "node server.js"
+
+					// Check Status of the File
+						
+						-> git status   //list untrack or change file list
+						-> git add .    // add change and untrack file
+						-> git status   // now check staus file untrack file or change file
+						-> git commit -m "Comment here about Status" // Make Comment change 
+						-> git push     // push the change on server or github
+
+					// Creating a new Heroku and push data and run the heroku app
+					
+						-> heroku create  
+						-> git push heroku 	
+ 						-> heroku open
+
+
+
+
+
+
 
