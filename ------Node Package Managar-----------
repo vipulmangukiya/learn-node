@@ -231,10 +231,33 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 						-> git push     // push the change on server or github
 
 					// Creating a new Heroku and push data and run the heroku app
-					
+
 						-> heroku create  
+						-> heroku git:remote -a <app new > ///(like: limitless-waters-23840)
 						-> git push heroku 	
  						-> heroku open
+   
+   ----------------------------------------------------------------------------------------------------------------
+
+   										06 Testing Your Applications
+   
+   ----------------------------------------------------------------------------------------------------------------
+
+   		installing mocha packeag it a one powerfull frmework in js (http://mochajs.org/)
+
+   			->npm install mocha --save-dev
+
+   		after instaaling mocha use the mocha in node program and make change on package.json file follwing  in file script section
+
+   			"test": "mocha **/*.test.js" 
+
+   				=>in here 'mocha' are package name 
+   				=> '**/' subdirectory access
+   				=>'/*.test.js' all file execute end with test.js
+
+   			->npm test  // Run the test script  inside set command 
+
+
 
 
 
