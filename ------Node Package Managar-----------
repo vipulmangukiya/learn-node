@@ -247,20 +247,142 @@ https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
 
    			->npm install mocha --save-dev
 
-   		after instaaling mocha use the mocha in node program and make change on package.json file follwing  in file script section
+   		after instaling mocha use the mocha in node program and make change on package.json file follwing  in file script section
 
    			"test": "mocha **/*.test.js" 
 
    				=>in here 'mocha' are package name 
    				=> '**/' subdirectory access
-   				=>'/*.test.js' all file execute end with test.js
+T   				=>'/*.test.js' all file execute end with test.js
 
    			->npm test  // Run the test script  inside set command 
 
+   		Auto Restarting Test File  same as nodemon there tow way to  autorestating app when some change in file
+   			1. -> nodemon --exec 'mpn test'
+
+   			2. need to update  package.json file like this way add new command in script file
+
+   				"test-watch" : "nodemon --exec \"npm test\""     // for windows
+
+   				"test-watch" : "nodemon --exec 'npm test'"       // for linux or mac
+
+   		Add new Expect package for expection handling 
+
+   			-> npm install expect --save--dev  // '--dev' option save in package.json file devDependencies   
+
+   			also may refer doc Link: https://github.com/mjackson/expect
+
+   			Use of expect in following way
+
+   			=> expect.(res).toBe(44); 
+
+   					in here res variable contain 44 value then it find otherwise throw the error
+
+   			=> expect(res).toBe(44).toBeA('number');
+
+   					in here check variable type also
+
+	   		------------------------------------------------	
+	   		Testing Express Applications Part II.
+	   		---------------------------------
+
+	   		Add new supertest package for express sever app
+	   		
 
 
 
 
+
+
+
+
+
+
+	----------------------------------------------------------------------------------------------------------------
+
+   										07 MongoDB Mongoose and REST APIs Todo API
+   
+    ----------------------------------------------------------------------------------------------------------------
+
+
+    (1). Installing MongoDB 
+    ------------------------ 
+
+    After Installing open Command Prompat
+    in MongoDB Directory inside the bin Directpry stating MongoDB Server 
+
+    -> mongod.exe --dbpath /Users/Vipz/mongo-data
+
+    > mongodb.exe
+
+	    Installing Mongodb package
+
+	    ->npm install mongodb --save
+	
+	=> Introdication MongoDB
+
+	SQL																		NoSQL
+
+	1. Table 																1. Collection
+
+	2. Table Structure 														2. Collection Structure
+		id 	name	email				mobile
+		1	Vipul 	vbmm20@gmail.com 	8000260025    							[{
+																				id: 'abc45',
+																				name: 'Vipul MAngukiya',
+																				email: 'vbmm20@gmail.com',
+																				mobile: '8000260025'			
+																				},{
+																					id: 'abc45',
+																					name: 'Vipul MAngukiya',
+																					email: 'vbmm20@gmail.com',
+																					mobile: '8000260025'
+																				}]
+
+	3. Each Recored identify as Row 										3. Each Recored identifiy as Document
+
+	4. Column 																4. Field
+
+
+	(2). How To Connect MongoDB to NodeJS
+	-------------------------------------
+
+		const MongoClient = require('mongodb');   // include package of mongodb
+
+		MongoClient.connect('mongodb://locahost:27017/Users',(err,db)=>{
+			if(err) {
+			return console.log('Unable to connnect',err);  /// fail to connnect 
+			}
+
+			console.log('Connected to MongoDB Server');  // Connect Successfully
+		});
+
+		->before run above code must followed (1) Step
+
+	=>Insert Data into Collection(Table)
+
+
+		const MongoClient = require('mongodb');   // include package of mongodb
+
+		MongoClient.connect('mongodb://locahost:27017/Users',(err,db)=>{
+			if(err) {
+			return console.log('Unable to connnect',err);  /// fail to connnect 
+			}
+
+			console.log('Connected to MongoDB Server');  // Connect Successfully
+
+			db.collection('Users').insertOne({
+			      name:'Vipul Mangukiya',
+			      age:24,
+			      location:'Surat'
+			  	},(err, result) => {
+			      if(err) {
+			        return console.log('Unable to Insert Users',err);
+			      }
+			      console.log(JSON.stringify(result.ops, undefined,2));
+			  });
+			  db.close();
+		});
 
 
 
