@@ -20,7 +20,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db) => {
   // });
 
   db.collection('Users').insertOne({
-      name:'Vipul Mangukiya',
+      name:'Vipul',
       age:24,
       location:'Surat'
   },(err, result) => {
