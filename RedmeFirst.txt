@@ -1,0 +1,452 @@
+------Node Package Managar-----------(https://goo.gl/Liymrw)
+
+https://vipzmangukiya@bitbucket.org/vipzmangukiya/nodejs.git
+
+=>lodash this packeage use for all string related operation and much more
+
+	install: project directory
+
+	-> npm install lodash --save
+
+
+=> nodemon this package use for automatically restart node application make change on code file
+
+	install : Globallay
+
+	-> npm install nodemon -g
+
+
+=> for applying automatically restart app apply following command on root file of the project
+
+	-> nodemon apps.js
+
+	(in out case app.js is root file)
+
+
+=> for accepting commad line arguments use follwing command
+	-> node app.js <list of argments separeate by space>
+	-> node app.js add
+
+=>for accpeting command line arguments with 3rd party module
+-	>npm install yargs@4.7.1   // installing yargs module specific version
+
+=> Debugging programs
+
+	-> npm inspect apps.js
+	-> list(10) // this command list the number or line given arguments
+	-> n // this option for next statement for dubugging
+	-> c // Continues reaming dubugging and also use when set the dubugger on program any line it direct     jump 		to debugger line
+	'dubugger' keyword use to program set the debugger in program
+		for setting debugger just wirte keyword on your program which line to set
+
+	=> Debugging form Chrome Developer Tools
+
+	-> node --inspect-brk apps.js
+		After running above command type on chrome url :
+			=> chrome://inspect/#devices
+
+=> command on yargs
+	command options use to validate the command arguments and display help of the command
+	it contain three aregument
+
+	.command(<command name> <discrib command functionality>,<arguments list and ther validation optoin>)
+
+	eg.
+		const argv 	= yargs
+				.command('add','Add a new note',{
+					title:{
+							describe: 'Title of note',  // first arg. discribe
+							demand: true,				// it is reuired or not
+							alias: 't'  				// alias to access passing argument
+						}
+				})
+				.command('list','List all notes') // wihout argument only help
+				.help()  // for help display of command
+				.argv;
+
+=> install request package
+
+	->npm install request --save
+
+=> Install axios package
+
+	->	Promise based HTTP client for the browser and node.js , A promise is an abstraction for 	      asynchronous programming
+
+		A promise is an abstraction for asynchronous programming.
+		e.g
+		------------------Code--------------------------------------------
+		var asyncAdd = (a, b) => {    ///  asynchronous which return promise
+			return new Promise((resolve, reject )=>{
+				setTimeout(() =>{
+					if(typeof a ==='number' && typeof b ==='number') {
+						resolve(a + b);
+					} else {
+						reject('Areguments must be numbers');
+					}
+				},1500);
+			});
+		};
+
+		asyncAdd(5,8).then((message) => { // resolve
+			console.log('Sum Are :' ,message);
+		}, (errorMessage) => {  //reject
+			console.log(errorMessage);
+		});
+
+		----------------------end Code demo-----------------------------------------
+
+		in promise return two type of value first success(resolve) and error (reject)
+
+		in here return promise value insted or storing value in variable to bind the value in 'then' using two case resolve and success case.
+
+	=> installing axios for local
+
+		->npm insatll axios --save
+
+
+
+
+-----------------------------------------------------------------------------
+ 				5. Web Servers and Application Deployment
+-----------------------------------------------------------------------------
+
+=> install express package no nonce libary
+
+	->npm install express --save
+
+	->npm install hbs --save  // it a template engine server
+
+	call the partials view(like header,footer) form the View using hbs package
+
+	for registerPartials use the following Code
+
+		--> hbs.registerPartials(__dirname + '/views/partials');
+
+			In the Partials Directory Create header.hbs and footer.hbs file
+
+			Calling Partials View in Code using following way
+
+				{{> header}}
+
+	                <body part>
+
+				{{> footer}}
+
+	==>Run The Partials file using following Command
+
+		-> node server.js -e js,hbs //  in option -e watch the extension file like js,hbs file
+
+	==>Creating Helper in hbs
+
+		For register the Helper following way
+			=> hbs.registerHelper('getCurrentYear', () =>{
+				return new Date().getFullYear();
+			});
+
+		In here 'getCurrentYear' Helper call directly in partials file and return current year
+
+	==> Creating Middelware using express
+		app.use((req, res, next)=>{
+
+		next();
+		});
+
+		In Here next argument are sedn execute next flow
+		First Run about page it will run after executing use block
+
+		Use of Middel ware to Authorized user to before calling  API
+
+
+		------------------------------------------
+			5.1 Git Hub Version Control
+		------------------------------------------
+			(All Command Run on Git Bash )
+		=> Generate SSH Key using the following Command
+
+			-> ssh-keygen -t rsa -b 4096 -C 'vbmm20@gmail.com'
+				// Enter All asking input after firing this command
+
+			=>List All SSH file
+			------------------
+			-> ls -al ~/.ssh
+
+			=>know the process id of rsa flie
+			-> eval "$(ssh-agent -s)"
+
+			=>Add Private SSH and Know The Path of file
+
+			->ssh-add ~/.ssh/id_rsa
+
+			=>after Setuping rsa key Goto the Github and login/singup
+
+				=>After Login Goto the Setting then after SSH and GPG keys
+					Link: https://github.com/settings/keys
+
+				=> Add New SSH Key
+					Add Title Apropriate Yor Machine name and Paste the generate SSH Key, Copy the SSH Key following Command
+					-> clip < ~/.ssh/id_rsa.pub
+
+				=> Add SSH Key
+
+				=>After Adding SSH Key Connet local to Github using Following Command
+					->ssh -T git@guthub.com
+
+				=>Create New Repository on Github Account and send the data in remote server(github) using following Command
+					// it will Display after creatig new Repository and initilize the Repository to the local machine
+
+					->git remote add origin https://github.com/vipulmangukiya/learn-node.git
+
+					// push data to the github Repository on Master branch
+
+					-> 	git push -u origin master
+
+					=> Creating Application on Cloud Base  Free Application development using Heroku.com
+						1. Login  heroku account
+						2. install heroku CLI (https://devcenter.heroku.com/articles/heroku-cli) based in Operating System
+						3. After Install heroku CLI Follwoing command execute
+							-> heroku --help
+						4. Login into heroku account
+							->heroku login
+								Eneter email and Password
+						5. Setup SSH to  heroku account execute the following command on SSH Directory
+							->heroku keys:add
+						6. View the Keys on your heroku  account
+							-> heroku keys
+							-> heroku keys: remove <email>  // if remove key form heroku a/c
+						7.Testing Connection between Github to Heroku
+							-> ssh -v git@heroku.com
+
+							now in set Daynmic port on server port file
+							const port  = process.env.PORT || 3000;
+
+							also make change on package.json file on scripts josn array after test add new 'star'
+								e.g : "start": "node server.js"
+
+					// Check Status of the File
+
+						-> git status   //list untrack or change file list
+						-> git add .    // add change and untrack file
+						-> git status   // now check staus file untrack file or change file
+						-> git commit -m "Comment here about Status" // Make Comment change
+						-> git push     // push the change on server or github
+
+					// Creating a new Heroku and push data and run the heroku app
+
+						-> heroku create
+						-> heroku git:remote -a <app new > ///(like: limitless-waters-23840)
+						-> git push heroku
+ 						-> heroku open
+
+   ----------------------------------------------------------------------------------------------------------------
+
+   										06 Testing Your Applications
+
+   ----------------------------------------------------------------------------------------------------------------
+
+   		installing mocha packeag it a one powerfull frmework in js (http://mochajs.org/)
+
+   			->npm install mocha --save-dev
+
+   		after instaling mocha use the mocha in node program and make change on package.json file follwing  in file script section
+
+   			"test": "mocha **/*.test.js"
+
+   				=>in here 'mocha' are package name
+   				=> '**/' subdirectory access
+T   				=>'/*.test.js' all file execute end with test.js
+
+   			->npm test  // Run the test script  inside set command
+
+   		Auto Restarting Test File  same as nodemon there tow way to  autorestating app when some change in file
+   			1. -> nodemon --exec 'mpn test'
+
+   			2. need to update  package.json file like this way add new command in script file
+
+   				"test-watch" : "nodemon --exec \"npm test\""     // for windows
+
+   				"test-watch" : "nodemon --exec 'npm test'"       // for linux or mac
+
+   		Add new Expect package for expection handling
+
+   			-> npm install expect --save--dev  // '--dev' option save in package.json file devDependencies
+
+   			also may refer doc Link: https://github.com/mjackson/expect
+
+   			Use of expect in following way
+
+   			=> expect.(res).toBe(44);
+
+   					in here res variable contain 44 value then it find otherwise throw the error
+
+   			=> expect(res).toBe(44).toBeA('number');
+
+   					in here check variable type also
+
+	   		------------------------------------------------
+	   		Testing Express Applications Part II.
+	   		---------------------------------
+
+	   		Add new supertest package for express sever app
+
+
+
+
+
+
+
+
+
+
+
+	----------------------------------------------------------------------------------------------------------------
+
+   										07 MongoDB Mongoose and REST APIs Todo API
+
+    ----------------------------------------------------------------------------------------------------------------
+
+
+    (1). Installing MongoDB
+    ------------------------
+
+    After Installing open Command Prompat
+    in MongoDB Directory inside the bin Directpry stating MongoDB Server
+
+    -> mongod.exe --dbpath /Users/Vipz/mongo-data
+
+    > mongodb.exe
+
+	    Installing Mongodb package
+
+	    ->npm install mongodb --save
+
+	=> Introdication MongoDB
+
+	SQL																		NoSQL
+
+	1. Database																1. Collection
+
+	2. Table Structure 														2. Collection Structure
+		id 	name	email				mobile
+		1	Vipul 	vbmm20@gmail.com 	8000260025    							[{
+																				id: 'abc45',
+																				name: 'Vipul MAngukiya',
+																				email: 'vbmm20@gmail.com',
+																				mobile: '8000260025'
+																				},{
+																					id: 'abc45',
+																					name: 'Vipul MAngukiya',
+																					email: 'vbmm20@gmail.com',
+																					mobile: '8000260025'
+																				}]
+
+	3. Each Recored identify as Row 										3. Each Recored identifiy as Document
+
+	4. Column 																4. Field
+
+	5. Table																5. Documents
+
+
+	(2). How To Connect MongoDB to NodeJS
+	-------------------------------------
+
+		const MongoClient = require('mongodb');   // include package of mongodb
+
+		MongoClient.connect('mongodb://locahost:27017/Users',(err,db)=>{
+			if(err) {
+			return console.log('Unable to connnect',err);  /// fail to connnect
+			}
+
+			console.log('Connected to MongoDB Server');  // Connect Successfully
+		});
+
+		->before run above code must followed (1) Step
+
+	=>Insert Data into Collection(Table)
+
+
+		const MongoClient = require('mongodb');   // include package of mongodb
+
+		MongoClient.connect('mongodb://locahost:27017/Users',(err,db)=>{
+			if(err) {
+			return console.log('Unable to connnect',err);  /// fail to connnect
+			}
+
+			console.log('Connected to MongoDB Server');  // Connect Successfully
+
+			db.collection('Users').insertOne({
+			      name:'Vipul Mangukiya',
+			      age:24,
+			      location:'Surat'
+			  	},(err, result) => {
+			      if(err) {
+			        return console.log('Unable to Insert Users',err);
+			      }
+			      console.log(JSON.stringify(result.ops, undefined,2));
+			  });
+			  db.close();
+		});
+
+	=> Searching Data
+	=>Delete Data
+	=>Update Data
+	Refer Following Site forAbove Op.
+		http://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html
+		https://docs.mongodb.com/manual/reference/operator/
+
+	(3). Mongooesjs (http://mongoosejs.com/)
+	-----------------------------------------
+	=> Connecting Mongodb to Mongoose
+		-------------------------------
+
+			var mongoose = require('mongoose'); // require packge
+
+			mongoose.Promise = global.Promise; // use Globallay mongoose
+			mongoose.connect('mongodb://localhost:27017/TodoApp'); // connect to mongoDB Server
+
+ => Create Model(Document) using mongoose
+		---------------------------------------
+
+			 var Todo = mongoose.model('Users',{
+					 text: {
+						 type: String
+					 },
+					 completed: {
+						 type:Boolean
+					 },
+					 completedAt: {
+						 type:Number
+					 }
+			 });
+			 => Here Create Model Name Usres with filed text,completed,completedAt with there data type
+	=> Save Data into Users model
+		---------------------------
+
+		var newTodo = new Todo({
+			text:'Vipul Mangukiya' ///also add multiple filed
+		});
+
+		  newTodo.save().then((doc) => {
+		      console.log(JSON.stringify(doc, undefined,2));
+		  }, (e) => {
+		    console.log('Unable to Save users')
+		  });
+
+	=>Validate on Model
+		-----------------
+
+		var Login = mongoose.model('Login',{
+		  username:{
+		    type:String,
+		    required: true,
+		    trim: true,
+		    minlength:1
+		  },
+		  email: {
+		    type: String,
+		    required: true,
+		    trim:true
+		  }
+		});
+
+
+		var NewUser = new Login({
